@@ -26,10 +26,10 @@ export const ContactsList = () => {
     //})
     //
     // typed like this but that doesn't work
-    /*setQueryData({
+    setQueryData({
       contacts: [{ ...contactFormValues, id: faker.datatype.uuid() }],
       ...contactPages[0]
-    }, {refetch: false})*/
+    }, {refetch: false})
 
     // kinda make sense to use it like this, but also doesn't work
     /*const [firstPage, ...restPages] = contactPages;

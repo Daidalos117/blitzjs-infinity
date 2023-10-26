@@ -71,7 +71,7 @@ const EditContactPage = () => {
 
       <p>
         <Link href={Routes.ContactsPage()}>
-          <a>Contacts</a>
+          Contacts
         </Link>
       </p>
     </div>

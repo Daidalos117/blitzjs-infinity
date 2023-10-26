@@ -27,7 +27,7 @@ export const Contact = () => {
         <pre>{JSON.stringify(contact, null, 2)}</pre>
 
         <Link href={Routes.EditContactPage({ contactId: contact.id })}>
-          <a>Edit</a>
+          Edit
         </Link>
 
         <button
@@ -52,7 +52,7 @@ const ShowContactPage = () => {
     <div>
       <p>
         <Link href={Routes.ContactsPage()}>
-          <a>Contacts</a>
+          Contacts
         </Link>
       </p>
 

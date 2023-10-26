@@ -3,7 +3,6 @@ import { useInfiniteQuery } from "@blitzjs/rpc"
 import getContacts from "../queries/getContacts"
 import React, { useCallback } from "react"
 import { ContactForm } from "./ContactForm"
-import { a } from "@blitzjs/auth/dist/index-ced88017"
 import { faker } from "@faker-js/faker"
 
 export const ContactsList = () => {

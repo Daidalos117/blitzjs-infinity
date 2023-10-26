@@ -1,3 +1,4 @@
+/*
 import { Routes } from "@blitzjs/next";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -46,3 +47,4 @@ const NewContactPage = () => {
 NewContactPage.authenticate = true;
 
 export default NewContactPage;
+*/

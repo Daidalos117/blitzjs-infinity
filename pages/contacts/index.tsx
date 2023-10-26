@@ -22,7 +22,7 @@ const ContactsPage = () => {
       <div>
         <p>
           <Link href={Routes.NewContactPage()}>
-            <a>Create Contact</a>
+            Create Contact
           </Link>
         </p>
 

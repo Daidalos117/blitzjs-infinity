@@ -7,13 +7,23 @@ import { faker } from "@faker-js/faker"
 
 export const ContactsList = () => {
   const router = useRouter()
-  const page = Number(router.query.page) || 0
-  const [
-    contactPages,
-    { isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, setQueryData },
-  ] = useInfiniteQuery(getContacts, (page = { take: 3, skip: 0 }) => page, {
-    getNextPageParam: (lastPage) => lastPage.nextPage,
-  })
+  const [contactPages, extraInfo] = useInfiniteQuery(
+    getContacts,
+    (page = { take: 3, skip: 0 }) => page,
+    {
+      getNextPageParam: (lastPage) => lastPage.nextPage,
+      refetchOnWindowFocus: false,
+      refetchInterval: false,
+      refetchIntervalInBackground: false,
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      cacheTime: Infinity,
+      staleTime: 111111,
+    }
+  )
+  const { isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, setQueryData } = extraInfo
+
+  console.log({ extraInfo })
 
   const onOnContactSave = (contactFormValues: { name: string }) => {
     // typescript throws error here, even tho it should be possible to return just old data
@@ -25,22 +35,25 @@ export const ContactsList = () => {
     //})
     //
     // typed like this but that doesn't work
-/*    setQueryData(oldData => {
-      console.log({ oldData })
-    }, {refetch: false})*/
+    setQueryData(
+      (oldData) => {
+        console.log({ oldData })
+      },
+      { refetch: false }
+    )
 
     // kinda make sense to use it like this, but also doesn't work
-    const [firstPage, ...restPages] = contactPages;
-    setQueryData([
-      {
-        ...firstPage,
-        contacts: [
-          { ...contactFormValues, id: faker.datatype.uuid() },
-          ...firstPage.contacts
-        ],
-      },
-      ...restPages
-    ], {refetch: false})
+    const [firstPage, ...restPages] = contactPages
+    setQueryData(
+      [
+        {
+          ...firstPage,
+          contacts: [{ ...contactFormValues, id: faker.datatype.uuid() }, ...firstPage.contacts],
+        },
+        ...restPages,
+      ],
+      { refetch: false }
+    )
   }
 
   return (
